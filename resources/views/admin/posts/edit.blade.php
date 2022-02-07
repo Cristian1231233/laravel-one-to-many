@@ -17,7 +17,7 @@
         @endif
         
 
-        <form action="{{ route('admin.posts.store', $post) }}" method="POST">
+        <form action="{{ route('admin.posts.update', $post) }}" method="POST">
             @csrf
             @method('PUT')
             <div class="mb-3">
@@ -40,7 +40,9 @@
                 <select name="category_id" id="category_id" class="form-select" form-label="Seleziona una categoria">
                     <option selected>Selezionare una categoria</option>
                     @foreach ($categories as $category)
-                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    <option 
+                    @if ($category->id == old('category_id')) selected @endif
+                    value="{{ $category->id }}">{{ $category->name }}</option>
                     @endforeach                   
                   </select>
              </div>
