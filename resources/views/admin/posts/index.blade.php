@@ -17,6 +17,7 @@
                     <th scope="col">ID</th>
                     <th scope="col">Titolo</th>
                     <th scope="col">Text</th>
+                    <th scope="col">Category</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -25,6 +26,12 @@
                             <th scope="row">{{$post->id}}</th>
                             <td>{{$post->title}}</td>
                             <td>{{$post->content}}</td>
+                            @if ($post->category)
+                                <td>{{$post->category->name}}</td>
+                            @else
+                                -
+                            @endif
+                              
                             <td><a href="{{ route('admin.posts.show', $post) }}" class="btn btn-info">Show</a></td>
                             <td><a href="{{ route('admin.posts.edit', $post) }}" class="btn btn-success">Edit</a></td>
                             <td>
@@ -42,6 +49,16 @@
               </table>
                         
                   {{ $posts->links() }}
+    </div>
+    <div>
+      @foreach ($categories as $category)
+          <h2>{{ $category->name }}</h2>
+            <ul>
+              @foreach ($category->posts as $post_category)
+                <li><a href="">{{ $post_category->title }}</a></li>
+            </ul>
+            @endforeach
+      @endforeach
     </div>
     
 @endsection
