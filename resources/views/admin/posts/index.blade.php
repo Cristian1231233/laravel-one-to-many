@@ -50,14 +50,20 @@
                         
                   {{ $posts->links() }}
     </div>
-    <div>
+    <div class="container">
       @foreach ($categories as $category)
           <h2>{{ $category->name }}</h2>
             <ul>
-              @foreach ($category->posts as $post_category)
-                <li><a href="">{{ $post_category->title }}</a></li>
+              @forelse ($category->posts as $post_category)
+                  <li>
+                      <a href="{{ route('admin.posts.show', $post_category) }}">{{ $post_category->title }}</a>
+                  </li>
+              @empty
+                 <li>Nessun post presente</li>
+              @endforelse
+                
             </ul>
-            @endforeach
+            
       @endforeach
     </div>
     

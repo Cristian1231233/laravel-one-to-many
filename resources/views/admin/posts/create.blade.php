@@ -36,10 +36,23 @@
                 <p> {{ $message }} </p>
                 @enderror
               </div>
+              <div class="mb-3">
+                  <label for="category_id" class="form-label">Inserisci una categoria</label>
+                <select name="category_id" id="category_id" class="form-select" form-label="Seleziona una categoria">
+                    <option selected>Selezionare una categoria</option>
+                    @foreach ($categories as $category)
+                   <option
+                        @if ($category->id == old('$category_id', $post->category_id)) selected @endif
+                      
+                     value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endforeach                   
+                  </select>
+            </div>
               <button class="btn btn-success" type="submit">Invia</button>
               <button class="btn btn-secondary" type="reset">Reset</button>
         </form>
 
     </div>
+                
     
 @endsection

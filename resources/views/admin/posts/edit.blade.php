@@ -36,6 +36,14 @@
                 <p> {{ $message }} </p>
                 @enderror
               </div>
+              <div class="mb-3">
+                <select name="category_id" id="category_id" class="form-select" form-label="Seleziona una categoria">
+                    <option selected>Selezionare una categoria</option>
+                    @foreach ($categories as $category)
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endforeach                   
+                  </select>
+             </div>
               <button class="btn btn-success" type="submit">Invia</button>
         </form>
 
